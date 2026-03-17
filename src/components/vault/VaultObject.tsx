@@ -23,13 +23,9 @@ function VaultBody() {
   return (
     <group>
       {/* Main body */}
-      <mesh material={material} castShadow receiveShadow>
-        <roundedBoxGeometry args={[2.4, 3, 1.8, 4, 0.08]} />
-      </mesh>
+      <RoundedBox args={[2.4, 3, 1.8]} radius={0.08} smoothness={4} material={material} castShadow receiveShadow />
       {/* Door frame inset */}
-      <mesh position={[0, 0, 0.91]} material={material}>
-        <roundedBoxGeometry args={[2.1, 2.6, 0.05, 2, 0.02]} />
-      </mesh>
+      <RoundedBox args={[2.1, 2.6, 0.05]} radius={0.02} smoothness={2} position={[0, 0, 0.91]} material={material} />
       {/* Handle */}
       <mesh position={[0.7, 0, 1.0]} castShadow>
         <cylinderGeometry args={[0.06, 0.06, 0.8, 16]} />
