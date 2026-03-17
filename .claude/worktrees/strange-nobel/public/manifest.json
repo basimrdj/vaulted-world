@@ -1,0 +1,25 @@
+{
+  "name": "VAULTED — Your Desires, Organized",
+  "short_name": "VAULTED",
+  "description": "AI-powered desire organizer. Screenshot, save, track prices, and organize your wishlist beautifully.",
+  "start_url": "/vault",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "lifestyle", "productivity"]
+}
