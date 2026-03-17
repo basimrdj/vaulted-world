@@ -64,8 +64,7 @@ function VaultDoor({ openProgress }: { openProgress: number }) {
   return (
     <group ref={doorRef} position={[1.05, 0, 0.9]}>
       {/* Door panel pivot is at left edge */}
-      <mesh position={[-1.05, 0, 0.05]} castShadow>
-        <roundedBoxGeometry args={[2.0, 2.5, 0.12, 2, 0.02]} />
+      <RoundedBox args={[2.0, 2.5, 0.12]} radius={0.02} smoothness={2} position={[-1.05, 0, 0.05]} castShadow>
         <meshPhysicalMaterial
           color="#1a1a1a"
           metalness={1}
@@ -73,7 +72,7 @@ function VaultDoor({ openProgress }: { openProgress: number }) {
           clearcoat={1}
           clearcoatRoughness={0.05}
         />
-      </mesh>
+      </RoundedBox>
     </group>
   );
 }
