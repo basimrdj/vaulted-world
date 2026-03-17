@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { MeshTransmissionMaterial } from '@react-three/drei';
+import { RoundedBox } from '@react-three/drei';
 
 interface VaultObjectProps {
   scrollProgress: number;
