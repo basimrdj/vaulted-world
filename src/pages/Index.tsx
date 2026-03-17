@@ -9,8 +9,8 @@ const Index = () => {
 
   return (
     <div className="relative">
-      {/* Scroll height spacer — 5x viewport for scroll choreography */}
-      <div className="h-[500vh]" />
+      {/* Scroll height spacer — 6x viewport for extended choreography */}
+      <div className="h-[600vh]" />
       
       {/* Fixed 3D Canvas */}
       <VaultScene

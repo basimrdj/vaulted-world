@@ -23,12 +23,12 @@ const VaultScene = memo(({ scrollProgress, mouseX, mouseY }: VaultSceneProps) =>
         depth: true,
         powerPreference: 'high-performance',
       }}
-      camera={{ position: [0, 0, 6], fov: 45, near: 0.1, far: 100 }}
+      camera={{ position: [0, 0, 7], fov: 42, near: 0.1, far: 100 }}
       style={{ background: '#050505' }}
     >
       <Suspense fallback={null}>
         <color attach="background" args={['#050505']} />
-        <fog attach="fog" args={['#050505', 8, 25]} />
+        <fog attach="fog" args={['#050505', 10, 30]} />
         
         <VaultLighting scrollProgress={scrollProgress} />
         <VaultObject
@@ -37,7 +37,7 @@ const VaultScene = memo(({ scrollProgress, mouseX, mouseY }: VaultSceneProps) =>
           mouseY={mouseY}
         />
         
-        <Environment preset="city" environmentIntensity={0.3} />
+        <Environment preset="city" environmentIntensity={0.4} />
         <VaultPostprocessing />
       </Suspense>
     </Canvas>
