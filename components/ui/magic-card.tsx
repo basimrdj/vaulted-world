@@ -1,5 +1,3 @@
-"use client"
-
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   motion,
@@ -7,7 +5,6 @@ import {
   useMotionValue,
   useSpring,
 } from "motion/react"
-import { useTheme } from "next-themes"
 
 import { cn } from "@/lib/utils"
 
@@ -21,10 +18,8 @@ interface MagicCardBaseProps {
 
 interface MagicCardGradientProps extends MagicCardBaseProps {
   mode?: "gradient"
-
   gradientColor?: string
   gradientOpacity?: number
-
   glowFrom?: never
   glowTo?: never
   glowAngle?: never
@@ -35,14 +30,12 @@ interface MagicCardGradientProps extends MagicCardBaseProps {
 
 interface MagicCardOrbProps extends MagicCardBaseProps {
   mode: "orb"
-
   glowFrom?: string
   glowTo?: string
   glowAngle?: number
   glowSize?: number
   glowBlur?: number
   glowOpacity?: number
-
   gradientColor?: never
   gradientOpacity?: never
 }
@@ -72,16 +65,9 @@ export function MagicCard(props: MagicCardProps) {
   const glowSize = isOrbMode(props) ? (props.glowSize ?? 420) : 420
   const glowBlur = isOrbMode(props) ? (props.glowBlur ?? 60) : 60
   const glowOpacity = isOrbMode(props) ? (props.glowOpacity ?? 0.9) : 0.9
-  const { theme, systemTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
 
-  useEffect(() => setMounted(true), [])
-
-  const isDarkTheme = useMemo(() => {
-    if (!mounted) return true
-    const currentTheme = theme === "system" ? systemTheme : theme
-    return currentTheme === "dark"
-  }, [theme, systemTheme, mounted])
+  // Simple light/dark detection without next-themes
+  const isDarkTheme = false
 
   const mouseX = useMotionValue(-gradientSize)
   const mouseY = useMotionValue(-gradientSize)
@@ -94,28 +80,18 @@ export function MagicCard(props: MagicCardProps) {
   const glowOpacityRef = useRef(glowOpacity)
   const gradientSizeRef = useRef(gradientSize)
 
-  useEffect(() => {
-    modeRef.current = mode
-  }, [mode])
-
-  useEffect(() => {
-    glowOpacityRef.current = glowOpacity
-  }, [glowOpacity])
-
-  useEffect(() => {
-    gradientSizeRef.current = gradientSize
-  }, [gradientSize])
+  useEffect(() => { modeRef.current = mode }, [mode])
+  useEffect(() => { glowOpacityRef.current = glowOpacity }, [glowOpacity])
+  useEffect(() => { gradientSizeRef.current = gradientSize }, [gradientSize])
 
   const reset = useCallback(
     (reason: ResetReason = "leave") => {
       const currentMode = modeRef.current
-
       if (currentMode === "orb") {
         if (reason === "enter") orbVisible.set(glowOpacityRef.current)
         else orbVisible.set(0)
         return
       }
-
       const off = -gradientSizeRef.current
       mouseX.set(off)
       mouseY.set(off)
@@ -132,9 +108,7 @@ export function MagicCard(props: MagicCardProps) {
     [mouseX, mouseY]
   )
 
-  useEffect(() => {
-    reset("init")
-  }, [reset])
+  useEffect(() => { reset("init") }, [reset])
 
   useEffect(() => {
     const handleGlobalPointerOut = (e: PointerEvent) => {
@@ -144,11 +118,9 @@ export function MagicCard(props: MagicCardProps) {
     const handleVisibility = () => {
       if (document.visibilityState !== "visible") reset("global")
     }
-
     window.addEventListener("pointerout", handleGlobalPointerOut)
     window.addEventListener("blur", handleBlur)
     document.addEventListener("visibilitychange", handleVisibility)
-
     return () => {
       window.removeEventListener("pointerout", handleGlobalPointerOut)
       window.removeEventListener("blur", handleBlur)
@@ -180,7 +152,6 @@ export function MagicCard(props: MagicCardProps) {
 
       {mode === "gradient" && (
         <motion.div
-          suppressHydrationWarning
           className="pointer-events-none absolute inset-px z-30 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           style={{
             background: useMotionTemplate`
@@ -196,7 +167,6 @@ export function MagicCard(props: MagicCardProps) {
 
       {mode === "orb" && (
         <motion.div
-          suppressHydrationWarning
           aria-hidden="true"
           className="pointer-events-none absolute z-30"
           style={{
@@ -210,7 +180,6 @@ export function MagicCard(props: MagicCardProps) {
             filter: `blur(${glowBlur}px)`,
             opacity: orbVisible,
             background: `linear-gradient(${glowAngle}deg, ${glowFrom}, ${glowTo})`,
-
             mixBlendMode: isDarkTheme ? "screen" : "multiply",
             willChange: "transform, opacity",
           }}

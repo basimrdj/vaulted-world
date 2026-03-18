@@ -1,10 +1,6 @@
-"use client"
-
 import { cn } from "@/lib/utils"
 import { PRICING_PLANS } from "@/lib/mock-data"
 import { useRef, useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { BlurFade } from "@/components/ui/blur-fade"
 import { NumberTicker } from "@/components/ui/number-ticker"
 import { MagicCard } from "@/components/ui/magic-card"
@@ -19,7 +15,6 @@ import { useMediaQuery } from "@/hooks/use-media-query"
 export function PricingSection() {
   const [isAnnual, setIsAnnual] = useState(false)
   const confettiRef = useRef<ConfettiRef>(null)
-  const router = useRouter()
   const isDesktop = useMediaQuery("(min-width: 768px)")
 
   const handlePremiumSelect = () => {
@@ -31,10 +26,6 @@ export function PricingSection() {
       colors: ["#0A0A0A", "#6B6B6B", "#9A9A9A", "#FFFFFF"],
       origin: { x: 0.5, y: 0.55 },
     })
-
-    window.setTimeout(() => {
-      router.push("/onboarding")
-    }, 180)
   }
 
   return (
@@ -57,7 +48,6 @@ export function PricingSection() {
         </div>
       </BlurFade>
 
-      {/* Billing toggle */}
       <BlurFade delay={0.2} inView>
         <div className="mb-14 flex justify-center">
         <div className="inline-flex rounded-full bg-white p-1 border border-[#E8E8E8]/60 shadow-[0_1px_3px_rgba(0,0,0,0.04)]">
@@ -155,12 +145,12 @@ export function PricingSection() {
                     </PulsatingButton>
                   </MagneticButton>
                 ) : (
-                  <Link
-                    href="/onboarding"
+                  <button
+                    type="button"
                     className="mt-8 flex h-12 w-full items-center justify-center rounded-xl font-semibold text-[13px] transition-all duration-200 border border-[#E8E8E8] bg-white text-[#0A0A0A] hover:bg-[#F7F7F7]"
                   >
                     Get Started
-                  </Link>
+                  </button>
                 )}
               </MagicCard>
             </BlurFade>
