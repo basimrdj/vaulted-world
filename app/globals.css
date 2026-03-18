@@ -12,7 +12,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-sans);
+  --font-sans: "Geist", "Urbanist", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
   --font-display: "Bodoni Moda", serif;
   --color-destructive-foreground: var(--destructive-foreground);

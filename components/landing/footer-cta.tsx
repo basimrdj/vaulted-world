@@ -1,6 +1,3 @@
-"use client"
-
-import { useRouter } from "next/navigation"
 import { LandingShaderBg } from "@/components/ui/landing-shader-bg"
 import { BlurFade } from "@/components/ui/blur-fade"
 import { Meteors } from "@/components/ui/meteors"
@@ -12,7 +9,6 @@ import { MagneticButton } from "@/components/ui/magnetic-button"
 export function FooterCta() {
   const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
   const isDesktop = useMediaQuery("(min-width: 768px)")
-  const router = useRouter()
 
   return (
     <section className="relative overflow-hidden bg-[#0A0A0A] py-32 text-white">
@@ -43,7 +39,6 @@ export function FooterCta() {
           <MagneticButton className="mt-10" disabled={!isDesktop}>
             <ShimmerButton
               type="button"
-              onClick={() => router.push("/onboarding")}
               className="h-13 rounded-2xl px-10 text-[14px] font-semibold"
               shimmerColor="#ffffff"
               shimmerSize="0.08em"
