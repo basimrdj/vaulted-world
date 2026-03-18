@@ -10,7 +10,6 @@ import {
 } from "framer-motion"
 import { ScrollProgress } from "@/components/ui/scroll-progress"
 import { V_ULTRA_SPRING } from "@/lib/physics"
-import { RouteTransitionShader } from "@/components/ui/route-transition-shader"
 
 export default function Template({ children }: { children: ReactNode }) {
   const pathname = usePathname()
@@ -19,10 +18,6 @@ export default function Template({ children }: { children: ReactNode }) {
   return (
     <>
       <ScrollProgress className="h-[2px] bg-[#0A0A0A]" />
-      <RouteTransitionShader
-        trigger={pathname}
-        disabled={Boolean(prefersReducedMotion)}
-      />
 
       <LayoutGroup id="vault-shared-elements">
         <AnimatePresence initial={false} mode="wait">
